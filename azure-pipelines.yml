@@ -1,29 +1,19 @@
 trigger:
-  - master  # Adjust according to your default branch
+  - main  # Adjust according to your default branch
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  GITHUB_TOKEN: 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  # Reference the GitHub PAT stored as a secret variable
-
 steps:
   - checkout: self
-    persistCredentials: false
+    clean: true
 
-  - script: | 
+  - script: |
+      git config --global user.name 'Nauman501'
+      git config --global user.email 'kyaninauman229@gmail.com'
       git remote rm origin
-      git config --global user.name 'Nauman501'
-      git config --global user.email 'kyaninauman229@gmail.com'
       git add .
-      git commit -m "test"
-      git config --global user.name 'Nauman501'
-      git config --global user.email 'kyaninauman229@gmail.com'
+      git commit -m "Commit message"
       git remote add github https://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@github.com/Nauman501/AzureDevOpsGithub.git
-      git push --set-upstream github main
-      git checkout main || git checkout -b main
-      
-      git push  --force
+      git push --force github main
     displayName: 'Push to GitHub'
-    env:
-      GITHUB_TOKEN: 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
