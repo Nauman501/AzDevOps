@@ -12,9 +12,9 @@ steps:
     persistCredentials: false
 
   - script: | 
-      cd Testfailover2
-      rm -r .git
-      git init
+      git remote rm origin
+      git config --global user.name 'Nauman501'
+      git config --global user.email 'kyaninauman229@gmail.com'
       git add .
       git commit -m "test"
       git config --global user.name 'Nauman501'
