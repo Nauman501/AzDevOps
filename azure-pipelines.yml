@@ -1,5 +1,5 @@
 trigger:
-  - master  # Adjust according to your default branch
+  - main  # Adjust according to your default branch
 
 pool:
   vmImage: 'ubuntu-latest'
