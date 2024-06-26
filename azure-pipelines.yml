@@ -9,6 +9,7 @@ steps:
     clean: true
 
   - script: |
+      cd /home/vsts/work/1/s/
       git config --global user.name 'Nauman501'
       git config --global user.email 'kyaninauman229@gmail.com'
       git remote rm origin
