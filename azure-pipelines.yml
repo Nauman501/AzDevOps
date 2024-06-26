@@ -1,25 +1,25 @@
 trigger:
-  - main  # Adjust according to your default branch
+  - master  # Adjust according to your default branch
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  GITHUB_TOKEN: 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  # Reference the GitHub PAT stored as a secret variable
+# variables:
+#   GITHUB_TOKEN: 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  # Reference the GitHub PAT stored as a secret variable
 
 steps:
   - checkout: self
-    persistCredentials: true
+    persistCredentials: false
 
   - script: | 
       git config --global user.name 'Nauman501'
       git config --global user.email 'kyaninauman229@gmail.com'
-      git remote add github https://$(GITHUB_TOKEN)@github.com/Nauman501/AzureDevOpsGithub.git
+      git remote add github https://github.com/Nauman501/AzureDevOpsGithub.git
       git fetch github
       git checkout main || git checkout -b main
       git add .
       git commit -m "Automated commit"
       git push github main --force
     displayName: 'Push to GitHub'
-    env:
-      GITHUB_TOKEN: $(GITHUB_TOKEN)
+    # env:
+    #   GITHUB_TOKEN: $(GITHUB_TOKEN)
