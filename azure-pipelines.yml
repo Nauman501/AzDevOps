@@ -14,5 +14,5 @@ steps:
       git config --global user.email 'kyaninauman229@gmail.com'
       git remote rm origin
       git remote add github https://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@github.com/Nauman501/AzureDevOpsGithub.git
-      git push --force github master
+      git push --force github main
     displayName: 'Push to GitHub'
