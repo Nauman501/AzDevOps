@@ -9,7 +9,7 @@ variables:
 
 steps:
   - checkout: self
-    persistCredentials: true
+    persistCredentials: false
 
   - script: |
       git config --global user.name 'Nauman501'
