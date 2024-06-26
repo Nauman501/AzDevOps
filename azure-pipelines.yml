@@ -1,19 +1,11 @@
 trigger:
   - main  # Adjust according to your default branch
 
-schedules:
-  - cron: "0 0 * * *"  # Runs daily at midnight UTC
-    displayName: Daily midnight build
-    branches:
-      include:
-        - main
-    always: true
-
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: GitHubCredentials
+  GITHUB_TOKEN: $(github_token)  # Reference the GitHub PAT stored as a secret variable
 
 steps:
   - checkout: self
@@ -22,10 +14,11 @@ steps:
   - script: |
       git config --global user.name 'Nauman501'
       git config --global user.email 'kyaninauman229@gmail.com'
-      git remote add github https://Nauman501:$(github_token)@github.com/Nauman501/AzureDevOpsGithub.git
+      git remote add github https://$(GITHUB_TOKEN)@github.com/Nauman501/AzureDevOpsGithub.git
       git fetch github main || true  # Fetch the remote state; ignore errors if branch doesn't exist
-      git checkout -B main  # Create or switch to main branch
-      git push github main --force-with-lease
+      git checkout main || git checkout -b main  # Switch to main branch, create if it doesn't exist
+      git rebase github/main || true  # Rebase with the remote main branch
+      git push github main --force
     displayName: 'Push to GitHub'
     env:
       GITHUB_TOKEN: $(github_token)
