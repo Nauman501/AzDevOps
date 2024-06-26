@@ -2,7 +2,7 @@ trigger:
   - main  # Adjust according to your default branch
 
 pool:
-  vmImage: 'window-latest'
+  vmImage: 'windows-latest'
 
 variables:
   GITHUB_TOKEN: $(github_token)  # Reference the GitHub PAT stored as a secret variable
