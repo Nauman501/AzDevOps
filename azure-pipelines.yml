@@ -5,7 +5,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  GITHUB_TOKEN: $(GITHUB_TOKEN)  # Reference the GitHub PAT stored as a secret variable
+  GITHUB_TOKEN: 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  # Reference the GitHub PAT stored as a secret variable
 
 steps:
   - checkout: self
@@ -21,4 +21,4 @@ steps:
       git push github main --force
     displayName: 'Push to GitHub'
     env:
-      GITHUB_TOKEN: $(GITHUB_TOKEN)
+      GITHUB_TOKEN: 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
