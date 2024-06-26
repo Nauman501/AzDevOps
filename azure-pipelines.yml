@@ -12,7 +12,11 @@ steps:
     persistCredentials: false
 
   - script: | 
-   
+      cd Testfailover2
+      rm -r .git
+      git init
+      git add .
+      git commit -m "test"
       git config --global user.name 'Nauman501'
       git config --global user.email 'kyaninauman229@gmail.com'
       git remote add github https://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@github.com/Nauman501/AzureDevOpsGithub.git
