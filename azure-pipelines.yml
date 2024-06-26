@@ -5,7 +5,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  GITHUB_TOKEN: $(github_token)  # Reference the GitHub PAT stored as a secret variable
+  GITHUB_TOKEN: $(GITHUB_TOKEN)  # Reference the GitHub PAT stored as a secret variable
 
 steps:
   - checkout: self
@@ -16,9 +16,8 @@ steps:
       git config --global user.email 'kyaninauman229@gmail.com'
       git remote add github https://$(GITHUB_TOKEN)@github.com/Nauman501/AzureDevOpsGithub.git
       git fetch github main || true  # Fetch the remote state; ignore errors if branch doesn't exist
-      git checkout main || git checkout -b main  # Switch to main branch, create if it doesn't exist
-      git rebase github/main || true  # Rebase with the remote main branch
+      git checkout -B main  # Create or switch to main branch
       git push github main --force
     displayName: 'Push to GitHub'
     env:
-      GITHUB_TOKEN: $(github_token)
+      GITHUB_TOKEN: $(GITHUB_TOKEN)
